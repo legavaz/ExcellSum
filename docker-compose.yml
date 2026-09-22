@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    image: subtotals-api:latest
+    ports: ["${API_PORT:-8000}:8000"]
+    environment:
+      STORAGE_TTL_HOURS: "24"
+    volumes:
+      - subtotals_storage:/data/storage
+    restart: unless-stopped
+
+volumes:
+  subtotals_storage:
